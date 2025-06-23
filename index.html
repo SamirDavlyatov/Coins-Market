@@ -138,34 +138,35 @@
 
   <section class="store" id="store">
     <!-- Game cards -->
-    <div class="card" data-game="Fortnite">
-      <img src="https://cdn2.unrealengine.com/Fortnite%2Fchapter4-s4%2FBR04_S14_Web_Header_2560x1440-2560x1440-7e76bb6e2b69.jpg" />
-      <h2>Fortnite V‑Bucks</h2>
+    <div class="card" data-game="Болгарка Ingco">
+      <img src="https://avatars.mds.yandex.net/i?id=3f6af4f88f55b7230b75c91dc066ef1e9aa9f58b-5315578-images-thumbs&n=13" />
+      <h2>Болгарка Ingco</h2>
       <select>
-        <option value="5">1000 V‑Bucks — $5</option>
-        <option value="12">2800 V‑Bucks — $12</option>
-        <option value="20">5000 V‑Bucks — $20</option>
+        <option value="129">1 - 3 Сутки — tjs 129</option>
+        <option value="259">1 - 8 Cутки — tjs 259</option>
+        <option value="329">1 - 15 Сутки — tjs 329</option>
       </select>
       <button onclick="addToCart(this)">Добавить в корзину</button>
     </div>
 
-    <div class="card" data-game="Genshin">
-      <img src="https://images.g2a.com/360x600/1x1x0/genshin-impact-20-genesis-crystals-pc-mobile-global/genshin-impact-20-genesis-crystals-pc-mobile-global.jpg" />
-      <h2>Genshin Crystals</h2>
+    <div class="card" data-game="Шуруповерт TotaL">
+      <img src="https://avatars.mds.yandex.net/i?id=4d43942d570ff38dab09dea041220238815ff3c7-4937208-images-thumbs&n=13" />
+      <h2>Шуруповерт TotaL</h2>
       <select>
-        <option value="1">60 Crystals — $1</option>
-        <option value="5">300 Crystals — $5</option>
-        <option value="15">980 Crystals — $15</option>
+        <option value="79">1 - 3 Сутки — tjs 79</option>
+        <option value="129">1 - 8 Сутки — tjs 129</option>
+        <option value="199">1 - 15 Сутки — tjs 199</option>
       </select>
       <button onclick="addToCart(this)">Добавить в корзину</button>
     </div>
 
-    <div class="card" data-game="Roblox">
-      <img src="https://i.ytimg.com/vi/xXWxUXA5Cmw/maxresdefault.jpg" /><h2>Robux</h2>
+    <div class="card" data-game="Перфоратор TotaL">
+      <img src="https://avatars.mds.yandex.net/i?id=1a6772b40483fd89ff90d1f3c973964134a262b8-10814954-images-thumbs&n=13" />
+      <h2>Перфоратор TotaL</h2>
       <select>
-        <option value="5">400 Robux — $5</option>
-        <option value="10">800 Robux — $10</option>
-        <option value="20">1700 Robux — $20</option>
+        <option value="99">1 - 3 Сутки — tjs 99</option>
+        <option value="199">1 - 8 Сутки — tjs 199</option>
+        <option value="299">1 - 15 Сутки — tjs 299</option>
       </select>
       <button onclick="addToCart(this)">Добавить в корзину</button>
     </div>
@@ -173,13 +174,13 @@
 
   <section class="form">
     <h2>Оформить заказ</h2>
-    <p>Сумма заказа: <strong id="total">$0</strong></p>
+    <p>Сумма заказа: <strong id="total">tjs 0</strong></p>
     <input type="text" placeholder="Ваше имя" id="name" required />
     <input type="email" placeholder="Email" id="email" required />
     <select id="payment">
-      <option value="Карта">Карта</option>
-      <option value="QIWI">QIWI</option>
-      <option value="Крипта">Крипта</option>
+      <option value="D/C">D/C(Dushanbe City)</option>
+      <option value="ICB">ICB</option>
+      <option value="AliF">AliF</option>
     </select>
     <textarea id="cart" readonly rows="4" placeholder="Корзина пуста"></textarea>
     <button onclick="sendOrder()">Оформить и открыть Telegram</button>
@@ -211,7 +212,7 @@
       total += price;
       cartText += `${game}: ${text}\n`;
       document.getElementById('cart').value = cartText;
-      document.getElementById('total').innerText = `${total}`;
+      document.getElementById('total').innerText = `tjs ${total}`;
     }
 
     function sendOrder() {
@@ -219,10 +220,12 @@
       const email = document.getElementById('email').value.trim();
       const payment = document.getElementById('payment').value;
 
-      const message = `Здравствуйте, я хочу сделать заказ:\nИмя: ${name}\nEmail: ${email}\nОплата: ${payment}\nСумма: $${total}\n\n${cartText}`;
+      const message = `Здравствуйте, я хочу сделать заказ:\nИмя: ${name}\nEmail: ${email}\nОплата: ${payment}\nСумма: tjs ${total}\n\nТовары:\n${cartText}`;
+      const encodedMessage = encodeURIComponent(message);
+      const telegramLink = `https://t.me/share/url?url=&text=${encodedMessage}`;
 
-      alert("Сейчас откроется Telegram. Отправьте ваше сообщение Самиру.");
-      window.open(`https://t.me/samirdavlyatov`, '_blank');
+      alert("Сейчас откроется Telegram с вашим заказом.");
+      window.open(telegramLink, '_blank');
     }
 
     // Языковой переключатель
@@ -231,7 +234,7 @@
     langToggle.onclick = () => {
       lang = lang === 'ru' ? 'en' : 'ru';
       langToggle.innerText = lang === 'ru' ? 'EN' : 'RU';
-      document.getElementById('title').innerText = lang === 'ru' ? "GameCoins Market" : "GameCoins Магазин";
+      document.getElementById('title').innerText = lang === 'ru' ? "Stroy-Material Market" : "Stroy-Material Магазин";
       document.querySelector('.form h2').innerText = lang === 'ru' ? "Оформить заказ" : "Place Order";
     };
   </script>
