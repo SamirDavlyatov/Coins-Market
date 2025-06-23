@@ -160,9 +160,9 @@
       <button onclick="addToCart(this)">Добавить в корзину</button>
     </div>
 
-    <div class="card" data-game="Перфоратор TotaL">
-      <img src="https://avatars.mds.yandex.net/i?id=1a6772b40483fd89ff90d1f3c973964134a262b8-10814954-images-thumbs&n=13" />
-      <h2>Перфоратор TotaL</h2>
+    <div class="card" data-game="Robux">
+      <img src="https://i.ytimg.com/vi/xXWxUXA5Cmw/maxresdefault.jpg" />
+      <h2>Robux</h2>
       <select>
         <option value="99">1 - 3 Сутки — tjs 99</option>
         <option value="199">1 - 8 Сутки — tjs 199</option>
@@ -190,7 +190,7 @@
     <strong>💡 Советы:</strong>
     <ul>
       <li>📞 После оформления нажмите кнопку и напишите Самиру в Telegram: <a href="https://t.me/samirdavlyatov" target="_blank">@samirdavlyatov</a></li>
-      <li>💳 Поддержка оплаты через D/C(Dushanbe City), ICB(Первый Микрофинансовый) и AliF</li>
+      <li>💳 Поддержка оплаты через карту, QIWI и крипту</li>
       <li>🔐 Безопасно: вы оплачиваете только после подтверждения</li>
     </ul>
   </div>
@@ -222,19 +222,20 @@
 
       const message = `Здравствуйте, я хочу сделать заказ:\nИмя: ${name}\nEmail: ${email}\nОплата: ${payment}\nСумма: tjs ${total}\n\nТовары:\n${cartText}`;
       const encodedMessage = encodeURIComponent(message);
-      const telegramLink = `https://t.me/share/@samirdavlyatov=&text=${encodedMessage}`;
+
+      // Открыть личный чат с Самиром и вставить сообщение
+      const telegramLink = `https://t.me/samirdavlyatov?text=${encodedMessage}`;
 
       alert("Сейчас откроется Telegram с вашим заказом.");
       window.open(telegramLink, '_blank');
     }
 
-    // Языковой переключатель
     const langToggle = document.getElementById('lang-toggle');
     let lang = 'ru';
     langToggle.onclick = () => {
       lang = lang === 'ru' ? 'en' : 'ru';
       langToggle.innerText = lang === 'ru' ? 'EN' : 'RU';
-      document.getElementById('title').innerText = lang === 'ru' ? "Stroy-Material Market" : "Stroy-Material Магазин";
+      document.getElementById('title').innerText = lang === 'ru' ? "GameCoins Market" : "GameCoins Магазин";
       document.querySelector('.form h2').innerText = lang === 'ru' ? "Оформить заказ" : "Place Order";
     };
   </script>
