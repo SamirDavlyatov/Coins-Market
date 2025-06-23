@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GameCoins Market</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0f172a;
+      color: #f1f5f9;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #38bdf8;
+    }
+
+    #lang-toggle {
+      background: #1e293b;
+      color: white;
+      border: 1px solid #38bdf8;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .store {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 15px;
+      border-radius: 16px;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover { transform: scale(1.04); }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .card h2 { margin: 10px 0; color: #facc15; }
+
+    .card select, .card button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .card select {
+      background: #334155;
+      color: white;
+    }
+
+    .card button {
+      background: #38bdf8;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .card button:hover { background: #0ea5e9; }
+
+    .form {
+      margin-top: 40px;
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 16px;
+    }
+
+    .form input, .form select, .form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: none;
+      background: #334155;
+      color: white;
+    }
+
+    .form button {
+      margin-top: 15px;
+      background: #22c55e;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .form button:hover {
+      background: #16a34a;
+    }
+
+    .tips {
+      margin-top: 30px;
+      padding: 20px;
+      background: #0e1e35;
+      border-left: 4px solid #38bdf8;
+      border-radius: 12px;
+      font-size: 0.95em;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #94a3b8;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5em; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 id="title">GameCoins Market</h1>
+    <button id="lang-toggle">EN</button>
+  </header>
+
+  <section class="store" id="store">
+    <!-- Game cards -->
+    <div class="card" data-game="Fortnite">
+      <img src="https://cdn2.unrealengine.com/Fortnite%2Fchapter4-s4%2FBR04_S14_Web_Header_2560x1440-2560x1440-7e76bb6e2b69.jpg" />
+      <h2>Fortnite V‑Bucks</h2>
+      <select>
+        <option value="5">1000 V‑Bucks — $5</option>
+        <option value="12">2800 V‑Bucks — $12</option>
+        <option value="20">5000 V‑Bucks — $20</option>
+      </select>
+      <button onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+
+    <div class="card" data-game="Genshin">
+      <img src="https://images.g2a.com/360x600/1x1x0/genshin-impact-20-genesis-crystals-pc-mobile-global/genshin-impact-20-genesis-crystals-pc-mobile-global.jpg" />
+      <h2>Genshin Crystals</h2>
+      <select>
+        <option value="1">60 Crystals — $1</option>
+        <option value="5">300 Crystals — $5</option>
+        <option value="15">980 Crystals — $15</option>
+      </select>
+      <button onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+
+    <div class="card" data-game="Roblox">
+      <img src="https://i.ytimg.com/vi/xXWxUXA5Cmw/maxresdefault.jpg" /><h2>Robux</h2>
+      <select>
+        <option value="5">400 Robux — $5</option>
+        <option value="10">800 Robux — $10</option>
+        <option value="20">1700 Robux — $20</option>
+      </select>
+      <button onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+  </section>
+
+  <section class="form">
+    <h2>Оформить заказ</h2>
+    <p>Сумма заказа: <strong id="total">$0</strong></p>
+    <input type="text" placeholder="Ваше имя" id="name" required />
+    <input type="email" placeholder="Email" id="email" required />
+    <select id="payment">
+      <option value="Карта">Карта</option>
+      <option value="QIWI">QIWI</option>
+      <option value="Крипта">Крипта</option>
+    </select>
+    <textarea id="cart" readonly rows="4" placeholder="Корзина пуста"></textarea>
+    <button onclick="sendOrder()">Оформить и открыть Telegram</button>
+  </section>
+
+  <div class="tips">
+    <strong>💡 Советы:</strong>
+    <ul>
+      <li>📞 После оформления нажмите кнопку и напишите Самиру в Telegram: <a href="https://t.me/samirdavlyatov" target="_blank">@samirdavlyatov</a></li>
+      <li>💳 Поддержка оплаты через карту, QIWI и крипту</li>
+      <li>🔐 Безопасно: вы оплачиваете только после подтверждения</li>
+    </ul>
+  </div>
+
+  <footer>
+    © 2025 GameCoins Market. Все права защищены.
+  </footer>
+
+  <script>
+    let total = 0;
+    let cartText = "";
+
+    function addToCart(button) {
+      const card = button.closest('.card');
+      const game = card.dataset.game;
+      const select = card.querySelector('select');
+      const price = Number(select.value);
+      const text = select.options[select.selectedIndex].text;
+      total += price;
+      cartText += `${game}: ${text}\n`;
+      document.getElementById('cart').value = cartText;
+      document.getElementById('total').innerText = `${total}`;
+    }
+
+    function sendOrder() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const payment = document.getElementById('payment').value;
+
+      const message = `Здравствуйте, я хочу сделать заказ:\nИмя: ${name}\nEmail: ${email}\nОплата: ${payment}\nСумма: $${total}\n\n${cartText}`;
+
+      alert("Сейчас откроется Telegram. Отправьте ваше сообщение Самиру.");
+      window.open(`https://t.me/samirdavlyatov`, '_blank');
+    }
+
+    // Языковой переключатель
+    const langToggle = document.getElementById('lang-toggle');
+    let lang = 'ru';
+    langToggle.onclick = () => {
+      lang = lang === 'ru' ? 'en' : 'ru';
+      langToggle.innerText = lang === 'ru' ? 'EN' : 'RU';
+      document.getElementById('title').innerText = lang === 'ru' ? "GameCoins Market" : "GameCoins Магазин";
+      document.querySelector('.form h2').innerText = lang === 'ru' ? "Оформить заказ" : "Place Order";
+    };
+  </script>
+
+</body>
+</html>
