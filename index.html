@@ -222,7 +222,7 @@
 
       const message = `Здравствуйте, я хочу сделать заказ:\nИмя: ${name}\nEmail: ${email}\nОплата: ${payment}\nСумма: tjs ${total}\n\nТовары:\n${cartText}`;
       const encodedMessage = encodeURIComponent(message);
-      const telegramLink = `https://t.me/share/url?url=&text=${encodedMessage}`;
+      const telegramLink = `https://t.me/share/@samirdavlyatov=&text=${encodedMessage}`;
 
       alert("Сейчас откроется Telegram с вашим заказом.");
       window.open(telegramLink, '_blank');
