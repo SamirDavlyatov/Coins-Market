@@ -3,69 +3,241 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Stroy Market Market</title>
+  <title>GameCoins Market</title>
   <style>
-    .error {
-      border: 2px solid #e11d48;
-      background: #4c1e47;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0f172a;
+      color: #f1f5f9;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
     }
-    /* остальной CSS оставляем как в предыдущей версии */
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #38bdf8;
+    }
+
+    #lang-toggle {
+      background: #1e293b;
+      color: white;
+      border: 1px solid #38bdf8;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .store {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 15px;
+      border-radius: 16px;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover { transform: scale(1.04); }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .card h2 { margin: 10px 0; color: #facc15; }
+
+    .card select, .card button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .card select {
+      background: #334155;
+      color: white;
+    }
+
+    .card button {
+      background: #38bdf8;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .card button:hover { background: #0ea5e9; }
+
+    .form {
+      margin-top: 40px;
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 16px;
+    }
+
+    .form input, .form select, .form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: none;
+      background: #334155;
+      color: white;
+    }
+
+    .form button {
+      margin-top: 15px;
+      background: #22c55e;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .form button:hover {
+      background: #16a34a;
+    }
+
+    .tips {
+      margin-top: 30px;
+      padding: 20px;
+      background: #0e1e35;
+      border-left: 4px solid #38bdf8;
+      border-radius: 12px;
+      font-size: 0.95em;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #94a3b8;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5em; }
+    }
   </style>
 </head>
 <body>
-  <!-- ... тот же HTML ... -->
+
+  <header>
+    <h1 id="title">GameCoins Market</h1>
+    <button id="lang-toggle">EN</button>
+  </header>
+
+  <section class="store" id="store">
+    <!-- Game cards -->
+    <div class="card" data-game="Болгарка Ingco">
+      <img src="https://avatars.mds.yandex.net/i?id=3f6af4f88f55b7230b75c91dc066ef1e9aa9f58b-5315578-images-thumbs&n=13" />
+      <h2>Болгарка Ingco</h2>
+      <select>
+        <option value="129">1 - 3 Сутки — tjs 129</option>
+        <option value="259">1 - 8 Cутки — tjs 259</option>
+        <option value="329">1 - 15 Сутки — tjs 329</option>
+      </select>
+      <button onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+
+    <div class="card" data-game="Шуруповерт ToataL">
+      <img src="https://avatars.mds.yandex.net/i?id=4d43942d570ff38dab09dea041220238815ff3c7-4937208-images-thumbs&n=13" />
+      <h2>Шуруповерт ToataL</h2>
+      <select>
+        <option value="79">1 - 3 Сутки — tjs 79</option>
+        <option value="129">1 - 8 Сутки — tjs 129</option>
+        <option value="199">1 - 15 Сутки — tjs 199</option>
+      </select>
+      <button onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+
+    <div class="card" data-game="Robux">
+      <img src="https://i.ytimg.com/vi/xXWxUXA5Cmw/maxresdefault.jpg" />
+      <h2>Robux</h2>
+      <select>
+        <option value="99">1 - 3 Сутки — tjs 99</option>
+        <option value="199">1 - 8 Сутки — tjs 199</option>
+        <option value="299">1 - 15 Сутки — tjs 299</option>
+      </select>
+      <button onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+  </section>
+
   <section class="form">
     <h2>Оформить заказ</h2>
-    <p>Сумма заказа: <strong id="total">tjs 0</strong></p>
-    <input type="text" placeholder="Ваше имя" id="name" />
-    <input type="email" placeholder="Email" id="email" />
+    <p>Сумма заказа: <strong id="total">tjs 0</strong></p>
+    <input type="text" placeholder="Ваше имя" id="name" required />
+    <input type="email" placeholder="Email" id="email" required />
     <select id="payment">
-      <option value="D/C">D/C (Dushanbe City)</option>
+      <option value="D/C">D/C(Dushanbe City)</option>
       <option value="ICB">ICB</option>
       <option value="AliF">AliF</option>
     </select>
     <textarea id="cart" readonly rows="4" placeholder="Корзина пуста"></textarea>
-    <button id="sendBtn">Оформить и открыть Telegram</button>
+    <button onclick="sendOrder()">Оформить и открыть Telegram</button>
   </section>
 
+  <div class="tips">
+    <strong>💡 Советы:</strong>
+    <ul>
+      <li>📞 После оформления нажмите кнопку и напишите Самиру в Telegram: <a href="https://t.me/samirdavlyatov" target="_blank">@samirdavlyatov</a></li>
+      <li>💳 Поддержка оплаты через карту, QIWI и крипту</li>
+      <li>🔐 Безопасно: вы оплачиваете только после подтверждения</li>
+    </ul>
+  </div>
+
+  <footer>
+    © 2025 GameCoins Market. Все права защищены.
+  </footer>
+
   <script>
-    let total = 0, cartText = "";
+    let total = 0;
+    let cartText = "";
 
     function addToCart(button) {
-      // Добавление товара
+      const card = button.closest('.card');
+      const game = card.dataset.game;
+      const select = card.querySelector('select');
+      const price = Number(select.value);
+      const text = select.options[select.selectedIndex].text;
+      total += price;
+      cartText += `${game}: ${text}\n`;
+      document.getElementById('cart').value = cartText;
+      document.getElementById('total').innerText = `tjs ${total}`;
     }
 
     function sendOrder() {
-      const nameIn = document.getElementById('name'),
-            emailIn = document.getElementById('email');
-      const name = nameIn.value.trim(), email = emailIn.value.trim();
-
-      nameIn.classList.remove('error');
-      emailIn.classList.remove('error');
-
-      if (!name || !email) {
-        if (!name) nameIn.classList.add('error');
-        if (!email) emailIn.classList.add('error');
-        alert('Пожалуйста, заполните имя и email.');
-        return;
-      }
-
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
       const payment = document.getElementById('payment').value;
+
       const message = `Здравствуйте, я хочу сделать заказ:\nИмя: ${name}\nEmail: ${email}\nОплата: ${payment}\nСумма: tjs ${total}\n\nТовары:\n${cartText}`;
-      const encoded = encodeURIComponent(message);
-      const telegramLink = `https://t.me/samirdavlyatov?text=${encoded}`;
+      const encodedMessage = encodeURIComponent(message);
+      const telegramLink = `https://t.me/share/url?url=&text=${encodedMessage}`;
 
-      // Проверяем синтаксис
-      if (!/^https:\/\/t\.me\/[A-Za-z0-9_]+/.test(telegramLink)) {
-        console.error('Неверная ссылка: ', telegramLink);
-        alert('Ошибка: ссылка для Telegram некорректна.');
-        return;
-      }
-
+      alert("Сейчас откроется Telegram с вашим заказом.");
       window.open(telegramLink, '_blank');
     }
 
-    document.getElementById('sendBtn').onclick = sendOrder;
+    // Языковой переключатель
+    const langToggle = document.getElementById('lang-toggle');
+    let lang = 'ru';
+    langToggle.onclick = () => {
+      lang = lang === 'ru' ? 'en' : 'ru';
+      langToggle.innerText = lang === 'ru' ? 'EN' : 'RU';
+      document.getElementById('title').innerText = lang === 'ru' ? "GameCoins Market" : "GameCoins Магазин";
+      document.querySelector('.form h2').innerText = lang === 'ru' ? "Оформить заказ" : "Place Order";
+    };
   </script>
+
 </body>
 </html>
