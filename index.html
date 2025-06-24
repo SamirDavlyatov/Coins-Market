@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,13 +15,27 @@
     }
     header {
       display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
     h1 { font-size: 2em; color: #38bdf8; }
     #lang-toggle {
       background: #1e293b; color: white; border: 1px solid #38bdf8;
       padding: 6px 12px; border-radius: 8px; cursor: pointer;
     }
+    .categories {
+      display: flex; flex-wrap: wrap;
+      gap: 10px; margin-bottom: 20px;
+    }
+    .categories button {
+      padding: 8px 16px;
+      background: #334155;
+      border: 1px solid #38bdf8;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .categories button:hover { background: #0ea5e9; }
     .store {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -37,7 +52,8 @@
     }
     .card h2 { margin: 10px 0; color: #facc15; }
     .card select, .card button {
-      width: 100%; margin-top: 10px; padding: 10px; border: none; border-radius: 8px;
+      width: 100%; margin-top: 10px; padding: 10px;
+      border: none; border-radius: 8px;
     }
     .card select { background: #334155; color: white; }
     .card button {
@@ -73,50 +89,122 @@
   </style>
 </head>
 <body>
-
   <header>
-    <h1 id="title">GameCoins Market</h1>
+    <h1 id="title">Stroy Market</h1>
     <button id="lang-toggle">EN</button>
   </header>
 
+  <nav class="categories">
+    <button onclick="filterCategory('all')">Все</button>
+    <button onclick="filterCategory('Инструменты')">Инструменты</button>
+    <button onclick="filterCategory('Запчасти')">Запчасти</button>
+    <button onclick="filterCategory('Болты и гайки')">Болты и гайки</button>
+  </nav>
+
   <section class="store" id="store">
-    <div class="card" data-game="Болгарка Ingco">
+    <div class="card" data-game="Болгарка Ingco" data-category="Инструменты">
       <img src="https://avatars.mds.yandex.net/i?id=3f6af4f88f55b7230b75c91dc066ef1e9aa9f58b-5315578-images-thumbs&n=13" alt="Болгарка Ingco">
       <h2>Болгарка Ingco</h2>
       <select>
-        <option value="129">1‑3 суток — tjs 129</option>
-        <option value="259">1‑8 суток — tjs 259</option>
-        <option value="329">1‑15 суток — tjs 329</option>
+        <option value="99">1‑3 суток — tjs 99</option>
+        <option value="129">1‑8 суток — tjs 129</option>
+        <option value="299">1‑15 суток — tjs 299</option>
       </select>
       <button onclick="addToCart(this)">Добавить в корзину</button>
     </div>
-
-    <div class="card" data-game="Шуруповерт ToataL">
-      <img src="https://avatars.mds.yandex.net/i?id=4d43942d570ff38dab09dea041220238815ff3c7-4937208-images-thumbs&n=13" alt="Шуруповерт ToataL">
-      <h2>Шуруповерт ToataL</h2>
+    <div class="card" data-game="Шруповерт TotaL" data-category="Инструменты">
+      <img src="https://avatars.mds.yandex.net/i?id=044f34df3de0595978f88f0765ddb303b1acc1d7-5205578-images-thumbs&n=13" alt="Болгарка Ingco">
+      <h2>Шруповерт TotaL</h2>
       <select>
-        <option value="79">1‑3 суток — tjs 79</option>
-        <option value="129">1‑8 суток — tjs 129</option>
-        <option value="199">1‑15 суток — tjs 199</option>
+        <option value="79">1‑3 суток — tjs 79</option>
+        <option value="159">1‑8 суток — tjs 159</option>
+        <option value="299">1‑15 суток — tjs 299</option>
       </select>
       <button onclick="addToCart(this)">Добавить в корзину</button>
     </div>
-
-    <div class="card" data-game="Robux">
-      <img src="https://i.ytimg.com/vi/xXWxUXA5Cmw/maxresdefault.jpg" alt="Robux">
-      <h2>Robux</h2>
+    <div class="card" data-game="Перфоратор TotaL" data-category="Инструменты">
+      <img src="https://avatars.mds.yandex.net/i?id=436da8a340e0e04b6224c66a2187f98a8e34a36e-10811833-images-thumbs&n=13" alt="Болгарка Ingco">
+      <h2>Перфоратор TotaL</h2>
       <select>
-        <option value="99">1‑3 суток — tjs 99</option>
-        <option value="199">1‑8 суток — tjs 199</option>
-        <option value="299">1‑15 суток — tjs 299</option>
+        <option value="129">1‑3 суток — tjs 129</option>
+        <option value="259">1‑8 суток — tjs 199</option>
+        <option value="329">1‑15 суток — tjs 319</option>
       </select>
       <button onclick="addToCart(this)">Добавить в корзину</button>
     </div>
-  </section>
 
+    <!-- Запчасти -->
+
+    <div class="card" data-game="Набор торцевых ключей и инструментов TotaL" data-category="Запчасти">
+      <img src="https://avatars.mds.yandex.net/i?id=5ef001d789249ae7b3d497bd2b47f90ca539705c-10172829-images-thumbs&n=13" alt="Болгарка Ingco">
+      <h2>Набор торцевых ключей и инструментов TotaL</h2>
+      <select>
+        <option value="49">1‑3 суток — tjs 49</option>
+        <option value="89">1‑8 суток — tjs 89</option>
+        <option value="109">1‑15 суток — tjs 109</option>
+      </select>
+      <button onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+    <div class="card" data-game="Набор торцевых ключей и инструментов ProsKit" data-category="Запчасти">
+      <img src="https://avatars.mds.yandex.net/i?id=c5c2e76da6a7c1ae06c814cd26e21053d2ee1302-4231455-images-thumbs&n=13" alt="Болгарка Ingco">
+      <h2>Набор торцевых ключей и инструментов ProsKit</h2>
+      <select>
+        <option value="69">1‑3 суток — tjs 69</option>
+        <option value="129">1‑8 суток — tjs 129</option>
+        <option value="259">1‑15 суток — tjs 259</option>
+      </select>
+      <button onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+
+    <!-- Болты и Гайки-->
+
+    <div class="card" data-game="Болт DIN 933 M6x16 мм" data-category="Болты и гайки">
+      <img src="https://avatars.mds.yandex.net/i?id=5a48b308347193da4e59afebf61a43914bda85b1-4097771-images-thumbs&n=13" alt="Болгарка Ingco">
+      <h2>Болт DIN 933 M6x16 мм</h2>
+      <select>
+        <option value="3">3 штук — tjs 3</option>
+        <option value="6">6 суток — tjs 6</option>
+        <option value="12">12 суток — tjs 12</option>
+      </select>
+      <button onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+
+    <div class="card" data-game="Гайка DIN934 шестигранная оцинк. М12" data-category="Болты и гайки">
+      <img src="https://avatars.mds.yandex.net/i?id=423d083c7aec43eb9729e4f679c527d44bc0f861-10933600-images-thumbs&n=13" alt="Болгарка Ingco">
+      <h2>Гайка DIN934 шестигранная оцинк. М12ч</h2>
+      <select>
+        <option value="3">3 штук — tjs 3</option>
+        <option value="6">6 штук — tjs 6</option>
+        <option value="12">12 штук — tjs 12</option>
+      </select>
+      <button onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+
+    <div class="card" data-game="DIN 961 Болт шестигранный М14x1.5x40 ST 10.9" data-category="Болты и гайки">
+      <img src="https://avatars.mds.yandex.net/i?id=50c9b1e8f78bc915a3ec58d05db24c6181ffb584-6088960-images-thumbs&n=13" alt="Болгарка Ingco">
+      <h2>DIN 961 Болт шестигранный М14x1.5x40 ST 10.9</h2>
+      <select>
+        <option value="3">3 штук — tjs 3</option>
+        <option value="6">6 штук — tjs 6</option>
+        <option value="12">12 штук — tjs 12</option>
+      </select>
+      <button onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+
+    <div class="card" data-game="Гайка шестигранная М8 DIN 934 высокопрочная" data-category="Болты и гайки">
+      <img src="https://avatars.mds.yandex.net/i?id=f3e15268aaf4632d38c63a929e77eacf34f1ddf1-12895285-images-thumbs&n=13" alt="Болгарка Ingco">
+      <h2>Гайка шестигранная М8 DIN 934 высокопрочная</h2>
+      <select>
+        <option value="3">3 штук — tjs 3</option>
+        <option value="6">6 штук — tjs 6</option>
+        <option value="12">12 штук — tjs 12</option>
+      </select>
+      <button onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+    
   <section class="form">
     <h2>Оформить заказ</h2>
-    <p>Сумма заказа: <strong id="total">tjs 0</strong></p>
+    <p>Сумма заказа: <strong id="total">tjs 0</strong></p>
     <input type="text" placeholder="Ваше имя" id="name">
     <input type="email" placeholder="Email" id="email">
     <select id="payment">
@@ -131,7 +219,7 @@
   <div class="tips">
     <strong>💡 Советы:</strong>
     <ul>
-      <li>📞 После оформления нажмите кнопку и напишите Самиру в Telegram: <a href="https://t.me/samirdavlyatov" target="_blank">@samirdavlyatov</a></li>
+      <li>📞 Напишите Самиру в Telegram: <a href="https://t.me/samirdavlyatov" target="_blank">@samirdavlyatov</a></li>
       <li>💳 Поддержка оплаты через карту, QIWI и крипту</li>
       <li>🔐 Безопасно: вы оплачиваете только после подтверждения</li>
     </ul>
@@ -152,9 +240,9 @@
       const price = Number(select.value);
       const text = select.options[select.selectedIndex].text;
       total += price;
-      cartText += `${game}: ${text}\n`;
+      cartText += `${game}: ${text}\n`;  // Используем обратные кавычки
       document.getElementById('cart').value = cartText;
-      document.getElementById('total').innerText = `tjs ${total}`;
+      document.getElementById('total').innerText = `tjs ${total}`;  // Обновляем формат
     }
 
     function sendOrder() {
@@ -163,19 +251,12 @@
       const name = nameInput.value.trim();
       const email = emailInput.value.trim();
 
-      // Сброс подсветки
       nameInput.classList.remove('error');
       emailInput.classList.remove('error');
 
       let valid = true;
-      if (!name) {
-        nameInput.classList.add('error');
-        valid = false;
-      }
-      if (!email) {
-        emailInput.classList.add('error');
-        valid = false;
-      }
+      if (!name) { nameInput.classList.add('error'); valid = false; }
+      if (!email) { emailInput.classList.add('error'); valid = false; }
       if (!valid) {
         alert('Пожалуйста, заполните поля: имя и email.');
         return;
@@ -185,16 +266,30 @@
       const message = `Здравствуйте, я хочу сделать заказ:\nИмя: ${name}\nEmail: ${email}\nОплата: ${payment}\nСумма: tjs ${total}\n\nТовары:\n${cartText}`;
       const encodedMessage = encodeURIComponent(message);
       const telegramLink = `https://t.me/samirdavlyatov?text=${encodedMessage}`;
-
       window.open(telegramLink, '_blank');
     }
 
+    function filterCategory(category) {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const cardCategory = card.dataset.category;
+        card.style.display = (category === 'all' || cardCategory === category) ? 'block' : 'none';
+      });
+    }
+
     document.getElementById('lang-toggle').onclick = () => {
-      const lang = document.getElementById('lang-toggle').innerText === 'EN' ? 'en' : 'ru';
-      document.getElementById('lang-toggle').innerText = lang === 'ru' ? 'EN' : 'RU';
-      document.getElementById('title').innerText = lang === 'ru' ? 'GameCoins Market' : 'GameCoins Магазин';
-      document.querySelector('.form h2').innerText = lang === 'ru' ? 'Оформить заказ' : 'Place Order';
-    };
+      const currentLang = document.getElementById('lang-toggle').innerText;
+      if (currentLang === 'EN') {
+        document.getElementById('lang-toggle').innerText = 'RU';
+        document.getElementById('title').innerText = 'Stroy Market (English)';
+        // Add more language-specific text changes here
+      } else {
+        document.getElementById('lang-toggle').innerText = 'EN';
+        document.getElementById('title').innerText = 'Stroy Market';
+        // Add more language-specific text changes here
+      }
+    }
   </script>
 </body>
+
 </html>
