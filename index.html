@@ -498,7 +498,7 @@
       const feedback = document.getElementById('promo-feedback');
       const code = promoInput.value.trim().toLowerCase();
 
-      if (code === 'super25') {
+      if (code === 'Stroy25!') {
         promoApplied = true;
         feedback.textContent = 'Промокод применён! Скидка 25%';
         feedback.className = 'success';
@@ -649,6 +649,8 @@
       document.getElementById('payment').options[1].text = t.paymentOptions[1];
       document.getElementById('payment').options[2].text = t.paymentOptions[2];
       document.getElementById('payment').options[3].text = t.paymentOptions[3];
+      document.getElementById('payment').options[4].text = t.paymentOptions[4];
+      document.getElementById('payment').options[5].text = t.paymentOptions[5];
       document.getElementById('details').placeholder = t.detailsPlaceholder;
       document.getElementById('promo-code').placeholder = t.promoPlaceholder;
       document.getElementById('apply-promo').textContent = t.applyPromo;
