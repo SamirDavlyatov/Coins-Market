@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Stroy Market</title>
   <style>
-    /* Стили как и ранее */
     * {
       margin: 0;
       padding: 0;
@@ -196,8 +195,6 @@
       color: #22c55e;
       font-weight: bold;
     }
-
-    /* Новый стиль для списка заказанных товаров */
     #order-details {
       margin-top: 25px;
       background: #334155;
@@ -246,7 +243,6 @@
       background: #b91c1c;
     }
 
-    /* Кнопка очистки всех заказанных товаров */
     #clear-cart-btn {
       background: #ef4444;
       border: none;
@@ -280,7 +276,6 @@
   </nav>
 
   <section class="store" id="store">
-    <!-- карточки товаров -->
     <div class="card" data-game="Болгарка Ingco" data-category="Инструменты">
       <img src="https://avatars.mds.yandex.net/i?id=3f6af4f88f55b7230b75c91dc066ef1e9aa9f58b-5315578-images-thumbs&n=13" alt="Болгарка Ingco" />
       <h2>Болгарка Ingco</h2>
@@ -312,7 +307,6 @@
       <button onclick="addToCart(this)">Добавить в корзину</button>
     </div>
 
-    <!-- Запчасти -->
 
     <div class="card" data-game="Набор торцевых ключей и инструментов TotaL" data-category="Необходимые Инструменты">
       <img src="https://avatars.mds.yandex.net/i?id=5ef001d789249ae7b3d497bd2b47f90ca539705c-10172829-images-thumbs&n=13" alt="Болгарка Ingco">
@@ -334,8 +328,6 @@
       </select>
       <button onclick="addToCart(this)">Добавить в корзину</button>
     </div>
-
-    <!-- Болты и Гайки-->
 
     <div class="card" data-game="Болт DIN 933 M6x16 мм" data-category="Болты и гайки">
       <img src="https://avatars.mds.yandex.net/i?id=5a48b308347193da4e59afebf61a43914bda85b1-4097771-images-thumbs&n=13" alt="Болгарка Ingco">
@@ -381,7 +373,6 @@
       <button onclick="addToCart(this)">Добавить в корзину</button>
     </div>
 
-    <!-- Добавьте другие карточки по аналогии -->
   </section>
 
   <section class="form">
@@ -414,7 +405,6 @@
         <button id="clear-cart-btn" title="Очистить все товары">Очистить всё</button>
       </h3>
       <ul id="order-list">
-        <!-- Здесь будут отображаться товары -->
       </ul>
     </div>
   </section>
@@ -433,7 +423,6 @@
   <footer>© 2024 Stroy Market — Все права защищены</footer>
 
   <script>
-    // Фильтр по категориям
     function filterCategory(category) {
       const cards = document.querySelectorAll('.card');
       if (category === 'all') {
